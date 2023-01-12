@@ -6,4 +6,8 @@
     margin: auto;
     margin-left: 21px;
     margin-bottom: 31px;
+    max-width: 190px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
 }
