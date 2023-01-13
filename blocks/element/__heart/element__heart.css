@@ -8,3 +8,7 @@
     margin-bottom: 30px;
     margin-top: 5px;
 }
+
+.element__heart:hover {
+    background-color: rgba(0, 0, 0, .5);
+}
