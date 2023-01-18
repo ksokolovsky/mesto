@@ -9,3 +9,12 @@
     border-style: none;
     border-bottom: 1px solid black;
 }
+
+@media screen and (max-width: 500px) {
+    .popup__input-profession {
+        width: 90%;
+        margin: auto;
+        margin-bottom: 45px;
+    }
+    
+}

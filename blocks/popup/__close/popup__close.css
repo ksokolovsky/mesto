@@ -2,10 +2,13 @@
     margin: 0;
     padding: 0;
     position: absolute;
-    bottom: 346px;
-    left: 438px;
+    /* bottom: 346px;
+    left: 438px; */
+    right: -36px;
+    top: -36px;
     background: url(../../../images/Close\ Icon.png);
     background-color: rgba(0, 0, 0, 0);
+    background-size: cover;
     width: 32px;
     height: 32px;
     border-style: none;
@@ -14,4 +17,13 @@
 
 .popup__close:hover {
     background-color: rgba(0, 0, 0, .6);
+}
+
+@media screen and (max-width: 500px) {
+    .popup__close {
+        width: 20px;
+        height: 20px;
+        top: -36px;
+        right: 0;
+    }
 }
