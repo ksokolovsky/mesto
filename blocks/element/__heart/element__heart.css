@@ -1,4 +1,5 @@
 .element__heart {
+    border: none;
     background: url(../../../images/Vector-heart.svg);
     width: 22px;
     height: 19px;
@@ -10,5 +11,5 @@
 }
 
 .element__heart:hover {
-    background-color: rgba(0, 0, 0, .5);
+    opacity: .5;
 }
