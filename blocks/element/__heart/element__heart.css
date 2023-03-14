@@ -5,6 +5,7 @@
     height: 19px;
     margin-right: 20px;
     margin-top: 5px;
+    cursor: pointer;
 }
 
 .element__heart:hover {

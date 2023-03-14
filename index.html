@@ -10,9 +10,9 @@
 <body class="body">
 
 
-    <header class="header">
-        <img class="header__logo" src="./images/logo.png" alt="Место логотип">
-        <figure class="header__line">Line</figure>
+    <header class="header">   
+         <img class="header__logo" src="./images/logo.svg" alt="Место логотип"> 
+        
     </header>
     <main class="main">
         <section class="profile">
@@ -74,19 +74,19 @@
     <footer class="footer">
         <span class="footer__copyright">© 2022 Mesto Russia</span>
     </footer>
-    <section class="popup">
+    <div class="popup">
         
-        <form class="popup__container">
+        <div class="popup__container">
              
-            <div class="popup__content">
+            <form class="popup__content" method="POST" name="change-profile-info-form">
                 <button type="button" class="popup__close"></button>
                 <h2 class="popup__title">Редактировать профиль</h2>
-                <input type="text" class="popup__input-name" placeholder="Жак-Ив Кусто">
-                <input type="text" class="popup__input-profession" placeholder="Исследователь океана">
-                <button type="submit" class="popup__save-button">Сохранить</button>
-            </div>
-        </form>
-    </section>
+                <input type="text" id="popup__input-name" name="name" class="popup__input" placeholder="Имя">
+                <input type="text" id="popup__input-profession" name="profession" class="popup__input" placeholder="О себе">
+                <button type="submit" name="change-profile-info-form__submit-button" class="popup__save-button">Сохранить</button>
+            </form>
+        </div>
+    </div>
     <script src="./scripts/index.js"></script>
 </body>
 </html>

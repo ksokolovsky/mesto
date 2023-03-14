@@ -8,11 +8,12 @@
     text-align: center;
     color: white;
     border: 0;
+    cursor: pointer;
 
 }
 
 .popup__save-button:hover {
-    background-color: rgba(0, 0, 0, .8);
+    opacity: .8;
 }
 
 @media screen and (max-width: 500px) {

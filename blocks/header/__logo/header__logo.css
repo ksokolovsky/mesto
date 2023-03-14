@@ -3,5 +3,20 @@
     max-height: 33px;
     margin: 0;
     margin-bottom: 41px;
-    margin-left: 27px;
+    
+}
+
+@media screen and (max-width: 900px) {
+    .header__logo {
+        margin-left: 27px;
+    }
+}
+
+@media screen and (max-width: 500px) {
+    .header__logo {
+        max-width: 104px;
+        max-height: 24px;
+        margin-bottom: 32px;
+        
+    }
 }
