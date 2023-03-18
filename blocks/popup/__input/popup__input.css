@@ -10,11 +10,21 @@
     border-bottom: 1px solid rgba(0, 0, 0, 0.2);
 }
 
+.popup__input:last-of-type {
+    margin-bottom: 48px;
+}
+
+
+
 @media screen and (max-width: 500px) {
     .popup__input {
-        width: 90%;
+        width: 100%;
         margin: auto;
         margin-bottom: 30px;
+    }
+
+    .popup__input:last-of-type {
+        margin-bottom: 45px;
     }
     
 }

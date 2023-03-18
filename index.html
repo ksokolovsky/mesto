@@ -16,57 +16,57 @@
     </header>
     <main class="main">
         <section class="profile">
-            <img class="profile__avatar" src="./images/Avatar.png" alt="Жак ив Кюсто, фотография">
+            <img class="profile__avatar" src="./images/Avatar.png" alt="Аватарка">
             <div class="profile__profile-info">
                 <h1 class="profile__name">Жак-Ив Кусто</h1>
-                <button type="button" class="profile__edit-button"></button>
+                <button type="button" aria-label="Кнопка редактирования профиля" class="profile__edit-button"></button>
                 <p class="profile__profession">Исследователь океана</p>
             </div>
-            <button type="button" class="profile__add-button"></button>
+            <button type="button" aria-label="Кнопка добавить" class="profile__add-button"></button>
         </section>
         <section class="elements">
-            <div class="element">
+            <article class="element">
                 <img src="./images/karachaevsk.png" class="element__image" alt="Карачаевск, старая церковь">
                 <div class="element__caption">
                     <h2 class="element__name">Карачаевск</h2>
-                    <button type="button" class="element__heart"></button>
+                    <button type="button" aria-label="Сердечко, лайк" class="element__heart"></button>
                 </div>
-            </div>
-            <div class="element">
+            </article>
+            <article class="element">
                 <img src="./images/Elbrus-mountin.png" class="element__image" alt="Величественная гора Эльбрус">
                 <div class="element__caption">
                     <h2 class="element__name">Гора Эльбрус</h2>
-                    <button type="button" class="element__heart"></button>
+                    <button type="button" aria-label="Сердечко, лайк" class="element__heart"></button>
                 </div>
-            </div>
-            <div class="element">
+            </article>
+            <article class="element">
                 <img src="./images/dombai.png" class="element__image" alt="Фотография Домбая">
                 <div class="element__caption">
                     <h2 class="element__name">Домбай</h2>
-                    <button type="button" class="element__heart"></button>
+                    <button type="button" aria-label="Сердечко, лайк" class="element__heart"></button>
                 </div>
-            </div>
-            <div class="element">
+            </article>
+            <article class="element">
                 <img src="./images/Elbrus-Mountin2.png" class="element__image" alt="Величественная гора Эльбрус">
                 <div class="element__caption">   
                     <h2 class="element__name">Гора Эльбрус</h2>
-                    <button type="button" class="element__heart"></button>
+                    <button type="button" aria-label="Сердечко, лайк" class="element__heart"></button>
                 </div>
-            </div>
-            <div class="element">
+            </article>
+            <article class="element">
                 <img src="./images/Dombai2.png" class="element__image" alt="Фотография Домбая">
                 <div class="element__caption">
                     <h2 class="element__name">Домбай</h2>
-                    <button type="button" class="element__heart"></button>
+                    <button type="button" aria-label="Сердечко, лайк" class="element__heart"></button>
                 </div>
-            </div>
-            <div class="element">
+            </article>
+            <article class="element">
                 <img src="./images/karachaevsk.png" class="element__image" alt="Карачаевск, старая церковь">
                 <div class="element__caption">
                     <h2 class="element__name">Карачаево-Черкессия</h2>
-                    <button type="button" class="element__heart"></button>
+                    <button type="button" aria-label="Сердечко, лайк" class="element__heart"></button>
                 </div>
-            </div>
+            </article>
             
         </section>
         
@@ -77,13 +77,13 @@
     <div class="popup">
         
         <div class="popup__container">
-             
+            <button type="button" aria-label="Кнопка закрыть" class="popup__close"></button>
             <form class="popup__content" method="POST" name="change-profile-info-form">
-                <button type="button" class="popup__close"></button>
+
                 <h2 class="popup__title">Редактировать профиль</h2>
                 <input type="text" id="popup__input-name" name="name" class="popup__input" placeholder="Имя">
                 <input type="text" id="popup__input-profession" name="profession" class="popup__input" placeholder="О себе">
-                <button type="submit" name="change-profile-info-form__submit-button" class="popup__save-button">Сохранить</button>
+                <button type="submit" aria-label="Кнопка сохранить" name="change-profile-info-form__submit-button" class="popup__save-button">Сохранить</button>
             </form>
         </div>
     </div>
