@@ -22,7 +22,9 @@
     .profile__edit-button {
         margin: auto;
         margin-left: 10px;
-        
+        width: 18px;
+        height: 18px;
     }
     
 }
+
