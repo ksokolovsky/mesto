@@ -1,4 +1,7 @@
 .element__image {
-    
+    object-fit: cover;
+    width: 282px;
+    height: 282px;
     margin-bottom: 25px;
+    
 }
