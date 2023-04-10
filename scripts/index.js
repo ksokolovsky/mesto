@@ -60,7 +60,7 @@ const handleAddCard = (event) => {
     };
 
     renderCardElement(createCardElement(cardData));
-    closePopupAdd();
+    closePopup(addCard);
 }
 
 addCardSubmit.addEventListener('submit', handleAddCard);
@@ -137,13 +137,10 @@ const editProfilePopupFillInputs = () => {
 } 
 profileEditButton.addEventListener('click', editProfilePopupFillInputs);
 
-const editProfile = function(event) {
-    profileName.textContent = `${popupInputName.value}`;
-    profileProfession.textContent = `${popupInputProfession.value}`;
-    event.preventDefault();
+const closeEditProfilePopup = () => {
     closePopup(popupElement);
-} 
-popupForm.addEventListener('submit', editProfile);
+}
+popupCloseButton.addEventListener('click', closeEditProfilePopup);
 
 // Как сделать общую?
 const closePopupByOverlayClick = function (event) {
@@ -153,11 +150,14 @@ const closePopupByOverlayClick = function (event) {
 } 
 popupElement.addEventListener('click', closePopupByOverlayClick);
 
-const closeEditProfilePopup = () => {
+// Редактирование профайла
+const editProfile = function(event) {
+    profileName.textContent = `${popupInputName.value}`;
+    profileProfession.textContent = `${popupInputProfession.value}`;
+    event.preventDefault();
     closePopup(popupElement);
-}
-popupCloseButton.addEventListener('click', closeEditProfilePopup);
-
+} 
+popupForm.addEventListener('submit', editProfile);
 
 /*  // Из работы 4.
     const openPopup = function() {
