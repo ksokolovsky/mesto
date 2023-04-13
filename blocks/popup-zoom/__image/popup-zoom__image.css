@@ -1,0 +1,7 @@
+.popup-zoom__image {
+    background: url(/images/karachaevsk.png);
+    position: relative;
+    align-self: center;
+    width: 75vw;
+    height: 75vh;
+}

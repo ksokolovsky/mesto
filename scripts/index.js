@@ -1,48 +1,54 @@
+import { initialCards } from "../vendor/constants";
 
 const profileEditButton = document.querySelector('.profile__edit-button');
 const profileName = document.querySelector('.profile__name');
 const profileProfession = document.querySelector('.profile__profession');
 
-const popupElement = document.querySelector('.popup-edit');
-const popupInputName = popupElement.querySelector('#popup__input-name');
-const popupInputProfession = popupElement.querySelector('#popup__input-profession');
-const popupCloseButton = popupElement.querySelector('.popup__close');
-const popupForm = popupElement.querySelector('.popup__content')
+const editProfilePopup = document.querySelector('.popup-edit');
+const editPopupInputName = editProfilePopup.querySelector('#popup__input-name');
+const editPopupInputProfession = editProfilePopup.querySelector('#popup__input-profession');
+const editPopupCloseButton = editProfilePopup.querySelector('.popup__close');
+const editPopupForm = editProfilePopup.querySelector('.popup__content')
 
-const addCard = document.querySelector('.popup-add');
-const addCardButton = addCard.querySelector('.popup-add__save-button');
-const popupAddButton = document.querySelector('.profile__add-button');
-const popupAddCloseButton = document.querySelector('.popup-add__close');
-const addCardSubmit = addCard.querySelector('.popup-add__content');
+const addCardPopup = document.querySelector('.popup-add');
+const addCardPopupButton = document.querySelector('.profile__add-button');
+const addCardPopupCloseButton = addCardPopup.querySelector('.popup-add__close');
+const addCardPopupSubmit = addCardPopup.querySelector('.popup-add__content');
 const cardTemplate = document.getElementById('card-template');
 const cardGrid = document.querySelector('.elements');
 
-const initialCards = [
-    {
-      name: 'Архыз',
-      link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
-    },
-    {
-      name: 'Челябинская область',
-      link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg'
-    },
-    {
-      name: 'Иваново',
-      link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg'
-    },
-    {
-      name: 'Камчатка',
-      link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg'
-    },
-    {
-      name: 'Холмогорский район',
-      link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg'
-    },
-    {
-      name: 'Байкал',
-      link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
-    }
-  ];
+const zoomImagePopup = document.querySelector('.popup-zoom');
+const zoomImagePopupCloseButton = zoomImagePopup.querySelector('.popup-zoom__close-button')
+
+
+
+// const initialCards = [
+//     {
+//       name: 'Архыз',
+//       link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
+//     },
+//     {
+//       name: 'Челябинская область',
+//       link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg'
+//     },
+//     {
+//       name: 'Иваново',
+//       link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg'
+//     },
+//     {
+//       name: 'Камчатка',
+//       link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg'
+//     },
+//     {
+//       name: 'Холмогорский район',
+//       link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg'
+//     },
+//     {
+//       name: 'Байкал',
+//       link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
+//     }
+//   ];
+
 
 
 // Добавление карточки. Забор из данных из инпутов
@@ -60,11 +66,13 @@ const handleAddCard = (event) => {
     };
 
     renderCardElement(createCardElement(cardData));
-    closePopup(addCard);
+    closePopup(addCardPopup);
 }
 
-addCardSubmit.addEventListener('submit', handleAddCard);
+addCardPopupSubmit.addEventListener('submit', handleAddCard);
 
+const zoomImage = document.querySelector('.popup-zoom__image');
+const zoomImageName = document.querySelector('.popup-zoom__image-name');
 
 // Добавление карточки. Сбор элемента.
 const createCardElement = (cardData) => {
@@ -75,6 +83,7 @@ const createCardElement = (cardData) => {
 
     const cardPicture = cardElement.querySelector('.element__image');
     cardPicture.src = cardData.link;
+    cardPicture.alt = "На фото " + cardData.name;
 
     // Лайк карточки
     const likeButton = cardElement.querySelector('.element__heart');
@@ -90,9 +99,22 @@ const createCardElement = (cardData) => {
         };
     deleteButton.addEventListener('click', handlDelete);
 
+    // Открыть попап с фотографией
+    const openZoomImagePopup = () => {
+        zoomImage.src = cardData.link;
+        zoomImageName.textContent = cardData.name;
+        zoomImage.alt = cardData.name + " крупным планом";
+
+        openPopup(zoomImagePopup);
+
+    }
+    cardPicture.addEventListener('click', openZoomImagePopup);
+
 
     return cardElement;
 }
+
+
 
 
 // Добавление карточки. Создание хтмл элемента в ДОМе
@@ -115,72 +137,59 @@ const closePopup = (popup) => {
     popup.classList.remove('popup_opened');
 }
 
+const closePopupByOverlayClick = function (event) {
+    if(event.target === event.currentTarget) {
+        addCardPopup.classList.remove('popup_opened');
+        editProfilePopup.classList.remove('popup_opened');
+        zoomImagePopup.classList.remove('popup_opened');
+    }
+} 
+editProfilePopup.addEventListener('click', closePopupByOverlayClick);
+addCardPopup.addEventListener('click', closePopupByOverlayClick);
+zoomImagePopup.addEventListener('click', closePopupByOverlayClick);
 
 // Открытие & закрытие попапа с добавлением карточки
 const openAddCardPopup = () => {
-    openPopup(addCard);
+    openPopup(addCardPopup);
 }
-popupAddButton.addEventListener('click', openAddCardPopup);
+addCardPopupButton.addEventListener('click', openAddCardPopup);
 
 const closeAddCardPopup = () => { 
-    closePopup(addCard);
+    closePopup(addCardPopup);
 }
-popupAddCloseButton.addEventListener('click', closeAddCardPopup);
+addCardPopupCloseButton.addEventListener('click', closeAddCardPopup);
 
 
 // Открытие & закрытие попапа с редактированием профайла
 
 const editProfilePopupFillInputs = () => {
-    popupInputName.value = profileName.textContent;
-    popupInputProfession.value = profileProfession.textContent;
-    openPopup(popupElement);
+    editPopupInputName.value = profileName.textContent;
+    editPopupInputProfession.value = profileProfession.textContent;
+    openPopup(editProfilePopup);
 } 
 profileEditButton.addEventListener('click', editProfilePopupFillInputs);
 
 const closeEditProfilePopup = () => {
-    closePopup(popupElement);
+    closePopup(editProfilePopup);
 }
-popupCloseButton.addEventListener('click', closeEditProfilePopup);
+editPopupCloseButton.addEventListener('click', closeEditProfilePopup);
 
-// Как сделать общую?
-const closePopupByOverlayClick = function (event) {
-    if(event.target === event.currentTarget) {
-        closePopup(popupElement);
-    }
-} 
-popupElement.addEventListener('click', closePopupByOverlayClick);
+// Закрытие попапа с картинкой через крестик
+const closeZoomImagePopup = () => {
+    closePopup(zoomImagePopup);
+}
+zoomImagePopupCloseButton.addEventListener('click', closeZoomImagePopup);
+
 
 // Редактирование профайла
 const editProfile = function(event) {
-    profileName.textContent = `${popupInputName.value}`;
-    profileProfession.textContent = `${popupInputProfession.value}`;
+    profileName.textContent = `${editPopupInputName.value}`;
+    profileProfession.textContent = `${editPopupInputProfession.value}`;
     event.preventDefault();
-    closePopup(popupElement);
+    closePopup(editProfilePopup);
 } 
-popupForm.addEventListener('submit', editProfile);
+editPopupForm.addEventListener('submit', editProfile);
 
-/*  // Из работы 4.
-    const openPopup = function() {
-    popupInputName.value = profileName.textContent;
-    popupInputProfession.value = profileProfession.textContent;
-    popupElement.classList.add('popup_opened');
-} */
-
-/*
-const openPopup = () => {
-    popupElement.classList.add('popup_opened');
-}
-
-const openPopupAddCard = () => {
-    addCard.classList.add('popup_opened');
-} */
-
-
-/* // Из работы 4.
-    const closePopup = function() {
-    popupElement.classList.remove('popup_opened');
-    
-} */
 
 
 

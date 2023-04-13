@@ -1,0 +1,9 @@
+.popup-zoom__image-name {
+    position: relative;
+    font-size: 12px;
+    line-height: 14.5px;
+    margin: 0;
+    margin-top: 10px;
+    align-self: flex-start;
+    color: white;
+}

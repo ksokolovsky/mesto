@@ -69,9 +69,15 @@
         </div>        
     </div>
     <div class="popup-zoom">
-        <img class="popup-zoom__image">
+      <div class="popup-zoom__container">
+        <button type="button" aria-label="Кнопка закрыть" class="popup-zoom__close-button popup__close"></button>
+        <div class="popup-zoom__image-container">
+            <img class="popup-zoom__image">
+            <p class="popup-zoom__image-name"></p>
+        </div>
+      </div>
     </div>
-    <script src="./scripts/index.js"></script>
+    <script type="module" src="./scripts/index.js"></script>
 
 </body>
 </html>
