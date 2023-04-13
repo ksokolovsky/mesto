@@ -1,4 +1,4 @@
-import { initialCards } from "../vendor/constants";
+import { initialCards } from "../vendor/constants.js";
 
 const profileEditButton = document.querySelector('.profile__edit-button');
 const profileName = document.querySelector('.profile__name');
