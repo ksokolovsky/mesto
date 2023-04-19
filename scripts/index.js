@@ -133,12 +133,12 @@ addCardPopupCloseButton.addEventListener('click', closeAddCardPopup);
 
 // Открытие & закрытие попапа с редактированием профайла
 
-const FillInputsEditProfilePopup = () => {
+const fillInputsEditProfilePopup = () => {
     editPopupInputName.value = profileName.textContent;
     editPopupInputProfession.value = profileProfession.textContent;
     openPopup(editProfilePopup);
 } 
-profileEditButton.addEventListener('click', FillInputsEditProfilePopup);
+profileEditButton.addEventListener('click', fillInputsEditProfilePopup);
 
 const closeEditProfilePopup = () => {
     closePopup(editProfilePopup);
