@@ -1,7 +1,11 @@
 .element__image {
+    display: block;
     object-fit: cover;
     width: 282px;
     height: 282px;
     margin-bottom: 25px;
+    color: white;
+    background-color: black;
+    cursor: pointer;
     
 }

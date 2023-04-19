@@ -1,4 +1,4 @@
-import { initialCards } from "../vendor/constants.js";
+import { initialCards } from "./constants.js";
 
 const profileEditButton = document.querySelector('.profile__edit-button');
 const profileName = document.querySelector('.profile__name');
@@ -23,6 +23,7 @@ const zoomImagePopupCloseButton = zoomImagePopup.querySelector('.popup-zoom__clo
 
 // Добавление карточки. Забор из данных из инпутов
 const handleAddCard = (event) => {
+    
     event.preventDefault();
     const nameInput = document.querySelector('.popup-add__input-name');
     const urlInput = document.querySelector('.popup-add__input-link');
@@ -36,6 +37,7 @@ const handleAddCard = (event) => {
     };
 
     renderCardElement(createCardElement(cardData));
+    addCardPopupSubmit.reset();
     closePopup(addCardPopup);
 }
 
@@ -49,7 +51,7 @@ const createCardElement = (cardData) => {
     const cardElement = cardTemplate.content.querySelector('.element').cloneNode(true);
 
     const cardName = cardElement.querySelector('.element__name');
-    cardName.innerHTML = cardData.name;
+    cardName.textContent = cardData.name;
 
     const cardPicture = cardElement.querySelector('.element__image');
     cardPicture.src = cardData.link;
@@ -58,7 +60,7 @@ const createCardElement = (cardData) => {
     // Лайк карточки
     const likeButton = cardElement.querySelector('.element__heart');
     const handlLike = () => {
-        likeButton.classList.toggle('element__heart_active');
+            likeButton.classList.toggle('element__heart_active');
         };
     likeButton.addEventListener('click', handlLike);
 
@@ -73,7 +75,7 @@ const createCardElement = (cardData) => {
     const openZoomImagePopup = () => {
         zoomImage.src = cardData.link;
         zoomImageName.textContent = cardData.name;
-        zoomImage.alt = cardData.name + " крупным планом";
+        zoomImage.alt = `${cardData.name} крупным планом`;
 
         openPopup(zoomImagePopup);
 
@@ -109,9 +111,8 @@ const closePopup = (popup) => {
 
 const closePopupByOverlayClick = function (event) {
     if(event.target === event.currentTarget) {
-        addCardPopup.classList.remove('popup_opened');
-        editProfilePopup.classList.remove('popup_opened');
-        zoomImagePopup.classList.remove('popup_opened');
+        closePopup(event.currentTarget);
+
     }
 } 
 editProfilePopup.addEventListener('click', closePopupByOverlayClick);
@@ -132,12 +133,12 @@ addCardPopupCloseButton.addEventListener('click', closeAddCardPopup);
 
 // Открытие & закрытие попапа с редактированием профайла
 
-const editProfilePopupFillInputs = () => {
+const FillInputsEditProfilePopup = () => {
     editPopupInputName.value = profileName.textContent;
     editPopupInputProfession.value = profileProfession.textContent;
     openPopup(editProfilePopup);
 } 
-profileEditButton.addEventListener('click', editProfilePopupFillInputs);
+profileEditButton.addEventListener('click', FillInputsEditProfilePopup);
 
 const closeEditProfilePopup = () => {
     closePopup(editProfilePopup);
@@ -153,19 +154,9 @@ zoomImagePopupCloseButton.addEventListener('click', closeZoomImagePopup);
 
 // Редактирование профайла
 const editProfile = function(event) {
-    profileName.textContent = `${editPopupInputName.value}`;
-    profileProfession.textContent = `${editPopupInputProfession.value}`;
     event.preventDefault();
+    profileName.textContent = editPopupInputName.value;
+    profileProfession.textContent = editPopupInputProfession.value;
     closePopup(editProfilePopup);
 } 
 editPopupForm.addEventListener('submit', editProfile);
-
-
-
-
-
-
-
-
-
-
