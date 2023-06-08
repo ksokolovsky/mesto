@@ -20,6 +20,8 @@ const cardGrid = document.querySelector('.elements');
 const zoomImagePopup = document.querySelector('.popup-zoom');
 const zoomImagePopupCloseButton = zoomImagePopup.querySelector('.popup-zoom__close-button');
 
+const profileForm = document.getElementsByName("change-profile-info-form");
+
 
 // Добавление карточки. Забор из данных из инпутов
 const handleAddCard = (event) => {
