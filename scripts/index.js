@@ -23,7 +23,7 @@ const zoomImagePopupCloseButton = zoomImagePopup.querySelector('.popup-zoom__clo
 const profileForm = document.getElementsByName("change-profile-info-form");
 
 
-// Добавление карточки. Забор из данных из инпутов
+// !Добавление карточки. Забор из данных из инпутов
 const handleAddCard = (event) => {
     
     event.preventDefault();
