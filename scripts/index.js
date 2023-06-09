@@ -105,18 +105,33 @@ initialCards.forEach((card) => {
 // Открытие и закрытие попапов
 const openPopup = (popup) => {
     popup.classList.add('popup_opened');
+    document.addEventListener('keydown', closeOnEscKey);
+    
 }
 
 const closePopup = (popup) => {
     popup.classList.remove('popup_opened');
+    document.removeEventListener('keydown', closeOnEscKey);
 }
 
+// Закрытие по оверлею
 const closePopupByOverlayClick = function (event) {
     if(event.target === event.currentTarget) {
         closePopup(event.currentTarget);
 
     }
 } 
+
+// Закрытие по Esc 
+function closeOnEscKey(evt) {
+    if (evt.key === 'Escape') {
+        const openedPopup = document.querySelector('.popup_opened');
+        if (openedPopup) {
+            closePopup(openedPopup);
+        }
+    }
+}
+
 editProfilePopup.addEventListener('click', closePopupByOverlayClick);
 addCardPopup.addEventListener('click', closePopupByOverlayClick);
 zoomImagePopup.addEventListener('click', closePopupByOverlayClick);

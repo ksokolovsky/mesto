@@ -64,7 +64,8 @@
             <button type="button" aria-label="Кнопка закрыть" class="popup__close popup-add__close"></button>
             <form class="popup-add__content popup__content" method="post" name="add-new-card">
                 <h2 class="popup__title">Новое место</h2>
-                <input type="text" id="popup-add__input-name" name="name" class="popup__input popup-add__input-name" placeholder="Название" required>
+                <input type="text" id="popup-add__input-name" name="name" class="popup__input popup-add__input-name" placeholder="Название" minlength="2" maxlength="30" required>
+                <span id="popup-add__input-name-error" class="popup__input-error"></span>
                 <input type="url" id="popup-add__input-link" name="picture-source" class="popup__input popup-add__input-link" placeholder="Ссылка на картинку" required>
                 <span id="popup-add__input-link-error" class="popup__input-error"></span>
                 <button type="submit" aria-label="Кнопка создать" name="add-button" formmethod="POST" class="popup-add__save-button popup__save-button">Создать</button>
