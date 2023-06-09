@@ -3,15 +3,15 @@
     padding: 0;
     max-width: 358px;
     height: 27px;
-    margin-bottom: 30px;
+    margin-bottom: 5px;
     font-size: 14px;
     line-height: 17px;
     border-style: none;
     border-bottom: 1px solid rgba(0, 0, 0, 0.2);
 }
 
-.popup__input:last-of-type {
-    margin-bottom: 48px;
+.popup__input:invalid {
+    border-bottom: 1px solid rgba(255, 0, 0, 1);
 }
 
 

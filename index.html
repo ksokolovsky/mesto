@@ -51,8 +51,10 @@
             <button type="button" aria-label="Кнопка закрыть" class="popup__close"></button>
             <form class="popup__content" method="post" name="change-profile-info-form">
                 <h2 class="popup__title">Редактировать профиль</h2>
-                <input type="text" id="popup__input-name" name="name" class="popup__input" placeholder="Имя">
-                <input type="text" id="popup__input-profession" name="profession" class="popup__input" placeholder="О себе">
+                <input type="text" id="popup__input-name" name="name" class="popup__input" placeholder="Имя" minlength="2" maxlength="40" required>
+                <span id="popup__input-name-error" class="popup__input-error"></span>
+                <input type="text" id="popup__input-profession" name="profession" class="popup__input" placeholder="О себе" minlength="2" maxlength="200" required>
+                <span id="popup__input-profession-error" class="popup__input-error"></span>
                 <button type="submit" aria-label="Кнопка сохранить" name="submit-button" formmethod="POST" class="popup__save-button">Сохранить</button>
             </form>
         </div>
@@ -64,6 +66,7 @@
                 <h2 class="popup__title">Новое место</h2>
                 <input type="text" id="popup-add__input-name" name="name" class="popup__input popup-add__input-name" placeholder="Название" required>
                 <input type="url" id="popup-add__input-link" name="picture-source" class="popup__input popup-add__input-link" placeholder="Ссылка на картинку" required>
+                <span id="popup-add__input-link-error" class="popup__input-error"></span>
                 <button type="submit" aria-label="Кнопка создать" name="add-button" formmethod="POST" class="popup-add__save-button popup__save-button">Создать</button>
             </form>
         </div>        
