@@ -1,4 +1,6 @@
 import { initialCards } from "./constants.js";
+import { config } from "./constants.js";
+import { changeButtonState } from "./validate.js";
 
 const profileEditButton = document.querySelector('.profile__edit-button');
 const profileName = document.querySelector('.profile__name');
@@ -8,7 +10,7 @@ const editProfilePopup = document.querySelector('.popup-edit');
 const editPopupInputName = editProfilePopup.querySelector('#popup__input-name');
 const editPopupInputProfession = editProfilePopup.querySelector('#popup__input-profession');
 const editPopupCloseButton = editProfilePopup.querySelector('.popup__close');
-const editPopupForm = editProfilePopup.querySelector('.popup__content')
+const editPopupForm = document.forms['change-profile-info-form'];
 
 const addCardPopup = document.querySelector('.popup-add');
 const addCardPopupButton = document.querySelector('.profile__add-button');
@@ -22,22 +24,39 @@ const zoomImagePopupCloseButton = zoomImagePopup.querySelector('.popup-zoom__clo
 
 const profileForm = document.getElementsByName("change-profile-info-form");
 
+const nameInput = document.querySelector('.popup-add__input-name');
+const urlInput = document.querySelector('.popup-add__input-link');
+
+const zoomImage = document.querySelector('.popup-zoom__image');
+const zoomImageName = document.querySelector('.popup-zoom__image-name');
+
+const popupSaveButton = document.querySelector('.popup__save-button');
+
+const popups = document.querySelectorAll('.popup')
 
 // !Добавление карточки. Забор из данных из инпутов
 const handleAddCard = (event) => {
     
     event.preventDefault();
-    const nameInput = document.querySelector('.popup-add__input-name');
-    const urlInput = document.querySelector('.popup-add__input-link');
+    
 
     const name = nameInput.value;
     const link = urlInput.value;
+
+    const inputList = Array.from(addCardPopupSubmit.querySelectorAll(config.inputSelector));
+
+    if (!name || !link) {
+        popupSaveButton.addAttribute('disabled', true);
+    } else {
+        popupSaveButton.removeAttribute('disabled');
+    }
 
     const cardData = {
         name,
         link,
     };
 
+    changeButtonState(inputList, addCardPopupSubmit.querySelector(config.submitButtonSelector), config);
     renderCardElement(createCardElement(cardData));
     addCardPopupSubmit.reset();
     closePopup(addCardPopup);
@@ -45,8 +64,7 @@ const handleAddCard = (event) => {
 
 addCardPopupSubmit.addEventListener('submit', handleAddCard);
 
-const zoomImage = document.querySelector('.popup-zoom__image');
-const zoomImageName = document.querySelector('.popup-zoom__image-name');
+
 
 // Добавление карточки. Сбор элемента.
 const createCardElement = (cardData) => {
@@ -88,6 +106,20 @@ const createCardElement = (cardData) => {
     return cardElement;
 }
 
+/*
+// Объединение закрывашек и открывашек - не было времени углубиться =(
+popups.forEach((popup) => {
+    popup.addEventListener('mousedown', (evt) => {
+        if (evt.target.classList.contains('popup_opened')) {
+            closePopup(popup)
+        }
+
+        if (evt.target.classList.contains('popup__close')) {
+            closePopup(popup)
+          } 
+    })
+}) 
+*/
 
 
 
@@ -113,6 +145,7 @@ const closePopup = (popup) => {
     popup.classList.remove('popup_opened');
     document.removeEventListener('keydown', closeOnEscKey);
 }
+
 
 // Закрытие по оверлею
 const closePopupByOverlayClick = function (event) {

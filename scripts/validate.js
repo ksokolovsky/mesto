@@ -1,21 +1,27 @@
 
-import { config } from "./constants.js"
+import { config } from "./constants.js";
+export { changeButtonState };
 
 // Включаем валидацию и навешиваем колбеки
-function enableValidation() {
+function enableValidation(config) {
     const formList = Array.from(document.querySelectorAll(config.formSelector));
     formList.forEach((formElement) => {
     formElement.addEventListener('submit', function (evt) {
       evt.preventDefault();
     });
 
-    setEventListeners(formElement);
+    formElement.addEventListener('reset', function () {
+        const buttonElement = formElement.querySelector(config.submitButtonSelector);
+        disableButton(buttonElement);
+    });
+
+    setEventListeners(formElement, config);
 })}
 
 // Добавляем / убираем дизаблед на кнопке
-function buttonChangeState (inputList, buttonElement) {
+function changeButtonState (inputList, buttonElement) {
     if (hasInvalidInput(inputList)) {
-        buttonElement.setAttribute('disabled', true);
+        disableButton(buttonElement);
     } else {
         buttonElement.removeAttribute('disabled');
 }};
@@ -52,17 +58,23 @@ function validateInput(input) {
     }
 }
 
-// Функция для раздачи ивентлистнеров всем желающим
-function setEventListeners(formElement) {
-    const inputList = Array.from(formElement.querySelectorAll('.popup__input'));
-    const formButton = formElement.querySelector('.popup__save-button');
+// Дизаблим кнопку
+function disableButton(buttonElement) {
+    buttonElement.setAttribute('disabled', true);
     
-    buttonChangeState(inputList, formButton);
+}
+
+// Функция для раздачи ивентлистнеров всем желающим
+function setEventListeners(formElement, config) {
+    const inputList = Array.from(formElement.querySelectorAll(config.inputSelector));
+    const formButton = formElement.querySelector(config.submitButtonSelector);
+    
+    changeButtonState(inputList, formButton);
 
     inputList.forEach((inputElement) => {
         inputElement.addEventListener('input', function() {
             validateInput(inputElement);
-            buttonChangeState(inputList, formButton);
+            changeButtonState(inputList, formButton);
         })
     })
 }

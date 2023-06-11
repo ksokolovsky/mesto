@@ -20,9 +20,10 @@ Project 6. UPD: Добавил валидацию форм через JS.
 **Figma**
 
 * [Ссылка на макет в Figma](https://www.figma.com/file/bjyvbKKJN2naO0ucURl2Z0/JavaScript.-Sprint-5?node-id=50160-172&t=5N96DaU5qR9Y0jZD-0)
+* [Project6.Figma] (https://www.figma.com/file/kRVLKwYG3d1HGLvh7JFWRT/JavaScript.-Sprint-6?type=design&node-id=0-1)
 
 **Продолжение**
-Следите за моими успехами в конце апреля.
+Продолжайте следить за моими успехами!)
 
 **Ссылка на сайт**
 * [Ссылка на гитхаб-пейджес](https://ksokolovsky.github.io/mesto/)
