@@ -10,11 +10,6 @@ function enableValidation(config) {
       evt.preventDefault();
     });
 
-    formElement.addEventListener('reset', function () {
-        const buttonElement = formElement.querySelector(config.submitButtonSelector);
-        disableButton(buttonElement);
-    });
-
     setEventListeners(formElement, config);
 })}
 
@@ -68,6 +63,10 @@ function disableButton(buttonElement) {
 function setEventListeners(formElement, config) {
     const inputList = Array.from(formElement.querySelectorAll(config.inputSelector));
     const formButton = formElement.querySelector(config.submitButtonSelector);
+
+    formElement.addEventListener('reset', function () {
+        disableButton(formButton);
+    });
     
     changeButtonState(inputList, formButton);
 

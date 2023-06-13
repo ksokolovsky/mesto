@@ -43,20 +43,11 @@ const handleAddCard = (event) => {
     const name = nameInput.value;
     const link = urlInput.value;
 
-    const inputList = Array.from(addCardPopupSubmit.querySelectorAll(config.inputSelector));
-
-    if (!name || !link) {
-        popupSaveButton.addAttribute('disabled', true);
-    } else {
-        popupSaveButton.removeAttribute('disabled');
-    }
-
     const cardData = {
         name,
         link,
     };
 
-    changeButtonState(inputList, addCardPopupSubmit.querySelector(config.submitButtonSelector), config);
     renderCardElement(createCardElement(cardData));
     addCardPopupSubmit.reset();
     closePopup(addCardPopup);
@@ -106,7 +97,7 @@ const createCardElement = (cardData) => {
     return cardElement;
 }
 
-/*
+
 // Объединение закрывашек и открывашек - не было времени углубиться =(
 popups.forEach((popup) => {
     popup.addEventListener('mousedown', (evt) => {
@@ -119,8 +110,6 @@ popups.forEach((popup) => {
           } 
     })
 }) 
-*/
-
 
 
 // Добавление карточки. Создание хтмл элемента в ДОМе
@@ -146,15 +135,6 @@ const closePopup = (popup) => {
     document.removeEventListener('keydown', closeOnEscKey);
 }
 
-
-// Закрытие по оверлею
-const closePopupByOverlayClick = function (event) {
-    if(event.target === event.currentTarget) {
-        closePopup(event.currentTarget);
-
-    }
-} 
-
 // Закрытие по Esc 
 function closeOnEscKey(evt) {
     if (evt.key === 'Escape') {
@@ -164,10 +144,6 @@ function closeOnEscKey(evt) {
         }
     }
 }
-
-editProfilePopup.addEventListener('click', closePopupByOverlayClick);
-addCardPopup.addEventListener('click', closePopupByOverlayClick);
-zoomImagePopup.addEventListener('click', closePopupByOverlayClick);
 
 // Открытие & закрытие попапа с добавлением карточки
 const openAddCardPopup = () => {
@@ -195,11 +171,6 @@ const closeEditProfilePopup = () => {
 }
 editPopupCloseButton.addEventListener('click', closeEditProfilePopup);
 
-// Закрытие попапа с картинкой через крестик
-const closeZoomImagePopup = () => {
-    closePopup(zoomImagePopup);
-}
-zoomImagePopupCloseButton.addEventListener('click', closeZoomImagePopup);
 
 
 // Редактирование профайла
@@ -210,3 +181,26 @@ const editProfile = function(event) {
     closePopup(editProfilePopup);
 } 
 editPopupForm.addEventListener('submit', editProfile);
+
+
+/*
+// Закрытие по оверлею
+const closePopupByOverlayClick = function (event) {
+    if(event.target === event.currentTarget) {
+        closePopup(event.currentTarget);
+
+    }
+} 
+*/
+
+//editProfilePopup.addEventListener('click', closePopupByOverlayClick);
+//addCardPopup.addEventListener('click', closePopupByOverlayClick);
+//zoomImagePopup.addEventListener('click', closePopupByOverlayClick);
+
+/*
+// Закрытие попапа с картинкой через крестик
+const closeZoomImagePopup = () => {
+    closePopup(zoomImagePopup);
+}
+zoomImagePopupCloseButton.addEventListener('click', closeZoomImagePopup);
+*/
