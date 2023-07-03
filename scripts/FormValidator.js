@@ -2,7 +2,7 @@ export class FormValidator {
     constructor(config, formElement) {
         this._config = config;
         this._formElement = formElement;
-        this._inputList = Array.from(formElement.querySelectorAll(this._config.inputSelector));
+        this._inputList = Array.from(this._formElement.querySelectorAll(this._config.inputSelector));
         this._formButton = this._formElement.querySelector(this._config.submitButtonSelector);
     }
 
@@ -12,6 +12,14 @@ export class FormValidator {
         });
 
         this._setEventListeners();
+    }
+
+    clearValidationErrors() {
+        this._inputList.forEach((inputElement) => {
+            const errorElement = this._formElement.querySelector(`#${inputElement.id}-error`);
+            errorElement.textContent = '';
+            inputElement.classList.remove(this._config.inputErrorClass);
+        });
     }
 
     _changeButtonState() {

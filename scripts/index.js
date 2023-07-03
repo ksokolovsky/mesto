@@ -29,6 +29,10 @@ editFormValidator.enableValidation();
 const addCardFormValidator = new FormValidator(config, addCardPopupSubmit);
 addCardFormValidator.enableValidation();
 
+const createCard = (cardData) => {
+    return new Card(cardData, cardTemplate, openZoomImagePopup);
+};
+
 // !Добавление карточки. Забор из данных из инпутов
 const handleAddCard = (event) => {
     event.preventDefault();
@@ -39,7 +43,7 @@ const handleAddCard = (event) => {
         link,
     };
 
-    const newCard = new Card(cardData, cardTemplate, openZoomImagePopup);
+    const newCard = createCard(cardData);
     renderCardElement(newCard.renderCard());
     addCardPopupSubmit.reset();
     closePopup(addCardPopup);
@@ -60,15 +64,16 @@ const openZoomImagePopup = (cardData) => {
 // Объединение закрывашек и открывашек - не было времени углубиться =(
 popups.forEach((popup) => {
     popup.addEventListener('mousedown', (evt) => {
-        if (evt.target.classList.contains('popup_opened')) {
+        if (evt.target.classList.contains('popup_opened') || evt.target.classList.contains('popup__close')) {
             closePopup(popup)
         }
-
-        if (evt.target.classList.contains('popup__close')) {
-            closePopup(popup)
-          } 
     })
 }) 
+
+// Функция развешивания анимации на закрытие и открытие попапа, потому что иначе анимация срабатывает при обновлении страницы
+popups.forEach(popup => {
+    popup.classList.add('popup_initialized');
+});
 
 // Добавление карточки. Создание хтмл элемента в ДОМе
 const renderCardElement = (cardElement) => {
@@ -76,14 +81,17 @@ const renderCardElement = (cardElement) => {
 }
 
 // Изначальные карточки из массива
-initialCards.forEach(cardData => {
-    const card = new Card(cardData, cardTemplate, openZoomImagePopup);
+initialCards.forEach((cardData) => {
+    const card = createCard(cardData);
     const cardElement = card.renderCard();
     renderCardElement(cardElement);
 });
 
 // Открытие и закрытие попапов
-const openPopup = (popup) => {
+const openPopup = (popup, formValidator) => {
+    if (formValidator) {
+        formValidator.clearValidationErrors();
+    }
     popup.classList.add('popup_opened');
     document.addEventListener('keydown', closeOnEscKey);
 }
@@ -105,7 +113,7 @@ function closeOnEscKey(evt) {
 
 // Открытие & закрытие попапа с добавлением карточки
 const openAddCardPopup = () => {
-    openPopup(addCardPopup);
+    openPopup(addCardPopup, addCardFormValidator);
 }
 addCardPopupButton.addEventListener('click', openAddCardPopup);
 
@@ -119,7 +127,7 @@ addCardPopupCloseButton.addEventListener('click', closeAddCardPopup);
 const fillInputsEditProfilePopup = () => {
     editPopupInputName.value = profileName.textContent;
     editPopupInputProfession.value = profileProfession.textContent;
-    openPopup(editProfilePopup);
+    openPopup(editProfilePopup, editFormValidator);
 } 
 profileEditButton.addEventListener('click', fillInputsEditProfilePopup);
 
