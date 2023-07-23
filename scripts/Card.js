@@ -1,15 +1,15 @@
 export class Card {
     
-    constructor(cardData, cardTemplate, openZoomImagePopup) {
+    constructor(cardData, cardTemplate, handleCardClick) {
         this._cardData = cardData;
         this._cardTemplate = cardTemplate; 
-        this._openZoomImagePopup = openZoomImagePopup;
+        this._handleCardClick = handleCardClick;
     }
 
     _setEventListeners() {
         this._likeButton.addEventListener('click', () => this._likeCard());
         this._deleteButton.addEventListener('click', () => this._deleteCard());
-        this._cardImage.addEventListener('click', () => this._openZoomImagePopup(this._cardData));
+        this._cardImage.addEventListener('click', () => this._handleCardClick(this._cardData));
     }
 
     _deleteCard() {
