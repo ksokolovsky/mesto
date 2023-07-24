@@ -1,6 +1,6 @@
 import './index.css';
 import { Card } from "../components/Card.js"
-import { initialCards } from "../components/constants.js";
+import { initialCards } from "../utils/utils.js";
 import { FormValidator } from "../components/FormValidator.js";
 import { config } from "../components/constants.js";
 import Section  from "../components/Section.js";
@@ -8,14 +8,15 @@ import Popup from "../components/Popup.js";
 import UserInfo from "../components/UserInfo.js";
 import PopupWithForm from "../components/PopupWithForm.js";
 import PopupWithImage from "../components/PopupWithImage.js";
+import {
+    profileEditButton,
+    editPopupForm,
+    addCardPopupSubmit,
+    cardTemplate,
+    cardGrid,
+    popups
+} from '../components/constants.js';
 
-
-const profileEditButton = document.querySelector('.profile__edit-button');
-const editPopupForm = document.forms['change-profile-info-form'];
-const addCardPopupSubmit = document.querySelector('.popup-add__content');
-const cardTemplate = document.getElementById('card-template');
-const cardGrid = document.querySelector('.elements');
-const popups = document.querySelectorAll('.popup')
 
 const editFormValidator = new FormValidator(config, editPopupForm);
 editFormValidator.enableValidation();
@@ -40,6 +41,7 @@ const userInfo = new UserInfo ({
 });
 
 const editProfilePopup = new PopupWithForm('.popup-edit', (userData) => {
+    console.log(userData);
     userInfo.setUserInfo(userData);
 });
 editProfilePopup.setEventListeners();
@@ -65,7 +67,7 @@ cardsSection.renderItems();
 
 profileEditButton.addEventListener('click', () => {
     const userData = userInfo.getUserInfo();
-    editProfilePopup.openPopup(userData);
+    editProfilePopup.openPopup(userData);   
 });
 
 document.querySelector('.profile__add-button').addEventListener('click', () => {
