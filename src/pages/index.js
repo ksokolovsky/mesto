@@ -2,7 +2,7 @@ import './index.css';
 import { Card } from "../components/Card.js"
 import { initialCards } from "../utils/utils.js";
 import { FormValidator } from "../components/FormValidator.js";
-import { config } from "../components/constants.js";
+import { config } from "../utils/constants.js";
 import Section  from "../components/Section.js";
 import Popup from "../components/Popup.js";
 import UserInfo from "../components/UserInfo.js";
@@ -15,7 +15,7 @@ import {
     cardTemplate,
     cardGrid,
     popups
-} from '../components/constants.js';
+} from '../utils/constants.js';
 
 
 const editFormValidator = new FormValidator(config, editPopupForm);
