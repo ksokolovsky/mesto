@@ -23,6 +23,8 @@
 @import url(../blocks/element/__image/element__image.css);
 @import url(../blocks/element/__name/element__name.css);
 @import url(../blocks/element/__caption/element__caption.css);
+@import url(../blocks/element/__like-counter/element__like-counter.css);
+@import url(../blocks/element/__like-wrap/element__like-wrap.css);
 
 @import url(../blocks/popup-zoom/popup-zoom.css);
 @import url(../blocks/popup-zoom/__image/popup-zoom__image.css);

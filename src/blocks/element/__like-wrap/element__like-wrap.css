@@ -1,0 +1,6 @@
+.element__like-wrap {
+    display: flex;
+    flex-direction: column;
+    width: 22px;
+    margin-right: 20px;
+}
