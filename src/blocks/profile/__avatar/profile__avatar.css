@@ -1,6 +1,6 @@
 .profile__avatar {
     position: relative;
-    background-image: url('../../../images/Avatar.png');
+    
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;

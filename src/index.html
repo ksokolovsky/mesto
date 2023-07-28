@@ -16,9 +16,9 @@
         <section class="profile">
             <div class="profile__avatar"></div>
             <div class="profile__profile-info">
-                <h1 class="profile__name">Жак-Ив Кусто</h1>
+                <h1 class="profile__name"></h1>
                 <button type="button" aria-label="Кнопка редактирования профиля" class="profile__edit-button"></button>
-                <p class="profile__profession">Исследователь океана</p>
+                <p class="profile__profession"></p>
             </div>
             <button type="button" aria-label="Кнопка добавить" class="profile__add-button"></button>
         </section>
@@ -37,7 +37,7 @@
             <h2 class="element__name">Карачаевск</h2>
             <div class="element__like-wrap">
                 <button type="button" aria-label="Сердечко, лайк" class="element__heart"></button>
-                <span class="element__like-counter">6</span>
+                <span class="element__like-counter"></span>
             </div>
         </div>
       </article>
@@ -66,7 +66,7 @@
                 <h2 class="popup__title">Новое место</h2>
                 <input type="text" id="popup-add__input-name" name="name" class="popup__input popup-add__input-name" placeholder="Название" minlength="2" maxlength="30" required>
                 <span id="popup-add__input-name-error" class="popup__input-error"></span>
-                <input type="url" id="popup-add__input-link" name="picture-source" class="popup__input popup-add__input-link" placeholder="Ссылка на картинку" required>
+                <input type="url" id="popup-add__input-link" name="link" class="popup__input popup-add__input-link" placeholder="Ссылка на картинку" required>
                 <span id="popup-add__input-link-error" class="popup__input-error"></span>
                 <button type="submit" aria-label="Кнопка создать" name="add-button" formmethod="POST" class="popup-add__save-button popup__save-button" disabled>Создать</button>
             </form>
@@ -86,7 +86,7 @@
             <button type="button" aria-label="Сохранить аватар" class="popup__close popup-avatar__close"></button>
             <form class="popup-avatar__content popup__content" method="PATCH" name="change-avatar">
                 <h2 class="popup__title">Обновить аватар</h2>
-                <input type="url" id="popup-avatar__input-link" name="avatar-source" class="popup__input popup-avatar__input-link" placeholder="Ссылка на изображение" required>
+                <input type="url" id="popup-avatar__input-link" name="avatarLink" class="popup__input popup-avatar__input-link" placeholder="Ссылка на изображение" required>
                 <span id="popup-avatar__input-link-error" class="popup__input-error"></span>
                 <button type="submit" aria-label="Сохранить" name="delete-button" formmethod="PATCH" class="popup-avatar__save-button popup__save-button">Сохранить</button>
             </form>

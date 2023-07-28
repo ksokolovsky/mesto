@@ -4,6 +4,8 @@ export const addCardPopupSubmit = document.querySelector('.popup-add__content');
 export const cardTemplate = document.getElementById('card-template');
 export const cardGrid = document.querySelector('.elements');
 export const popups = document.querySelectorAll('.popup');
+export const changeAvatarPopupForm = document.querySelector('.popup-avatar__content');
+
 
   export const config = {
     formSelector: '.popup__content',

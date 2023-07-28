@@ -7,7 +7,7 @@ export default class PopupWithImage extends Popup {
     this._caption = this._popupElement.querySelector('.popup-zoom__image-name');
 }
 
-// Не забыть: сюда будут подставляться inputValue
+// Не забыть: сюда будут подставляться inputValue 
 openPopup(name, link) {
     this._image.src = link;
     this._image.alt = `${name} крупным планом`;
