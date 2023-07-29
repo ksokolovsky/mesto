@@ -1,6 +1,6 @@
 export class Card {
     
-    constructor(cardData, cardTemplate, handleCardClick, handleLikeCard, handleDislikeCard, userId, deleteCardPopup) {
+    constructor(cardData, cardTemplate, handleCardClick, handleLikeCard, handleDislikeCard, userId, deleteCardPopup, api) {
         this._cardData = cardData;
         this._cardTemplate = cardTemplate; 
         this._handleCardClick = handleCardClick;
@@ -11,17 +11,29 @@ export class Card {
         this._deleteCardPopup = deleteCardPopup;
         this._deleteButton = document.querySelector('element__delete-button');
         this._deleteForm = document.querySelector('.popup-delete__content');
+        this._api = api;
+        
     }
 
     _setEventListeners() {
         this._likeButton.addEventListener('click', () => this._likeCard());
-        // this._deleteButton.addEventListener('click', () => {
-        //     this._handleDeleteCard(this._cardData._id)
-        //     .then(() => {
-        //         this._deleteCard();
-        //     })
-        // })
         this._cardImage.addEventListener('click', () => this._handleCardClick(this._cardData));
+        this._deleteButton.addEventListener('click', () => {
+            const deleteCardHandler = this.createDeleteCardHandler(this._cardData._id, this._card);
+            this._deleteCardPopup.setSubmitAction(deleteCardHandler);
+            this._deleteCardPopup.openPopup();
+        });   
+    }
+
+    createDeleteCardHandler(cardId, cardElement) {
+        return function() {
+            this._api.deleteCard(cardId)
+                .then(() => {
+                    cardElement.remove();
+                    this._deleteCardPopup.closePopup();
+                })
+                .catch((err) => console.log(err));
+        }.bind(this);
     }
 
     _deleteCard() {
@@ -30,16 +42,17 @@ export class Card {
     }
 
     _likeCard() {
-        this._likeButton.classList.toggle('element__heart_active');
         if (this._likeButton.classList.contains('element__heart_active')) {
-            this._handleLikeCard(this._cardData._id)
+            this._handleDislikeCard(this._cardData._id)
                 .then(data => {
+                    this._likeButton.classList.toggle('element__heart_active');
                     this._likeCounter.textContent = data.likes.length;
                 })
                 .catch(err => console.log(err));
         } else {
-            this._handleDislikeCard(this._cardData._id)
+            this._handleLikeCard(this._cardData._id)
                 .then(data => {
+                    this._likeButton.classList.toggle('element__heart_active');
                     this._likeCounter.textContent = data.likes.length;
                 })
                 .catch(err => console.log(err));
