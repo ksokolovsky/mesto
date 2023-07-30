@@ -30,83 +30,17 @@ const api = new Api({
 
 let currentUser = null;
 let userId = null;
-// api.getUserData()
-// .then((res) => {
-//     document.querySelector('.profile__name').textContent = res.name;
-//     document.querySelector('.profile__profession').textContent = res.about;
-//     document.querySelector('.profile__avatar').style.backgroundImage = `url(${res.avatar})`;
-//     currentUser = res;
-//     userId = res._id;
-// })
-// .catch((err) => console.log(err));
 
-// api.getInitialCard()
-// .then(res => {
-//     const cardSection = new Section({
-//         items: res,
-//         renderer: (cardData) => {
-//             const card = new Card(
-//                 cardData, 
-//                 document.getElementById('card-template'), 
-//                 handleCardClick, 
-//                 (cardId) => api.likeCard(cardId), 
-//                 (cardId) => api.dislikeCard(cardId),
-//                 //handleDeleteCard,
-//                 userId,
-//                 deleteCardPopup
-//                 );
-//             const cardElement = card.renderCard();
-//             cardSection.addItem(cardElement);
-//         },
-//     }, '.elements');
-//     cardSection.renderItems();
-// })
-// .catch(err => console.log(err));
 
 //bil vtoroi paramtr cardId
 const renderCardElement = (cardElement) => {
-    cardSection.addItem(cardElement);
-    // const deleteButton = cardElement.querySelector('.element__delete-button');
-    // deleteButton.addEventListener('click', () => {
-    //     const deleteCardHandler = createDeleteCardHandler(cardId, cardElement);
-    //     deleteCardPopup.setSubmitAction(deleteCardHandler);
-    //     deleteCardPopup.openPopup();
-    // });      
+    cardSection.addItem(cardElement);     
 };
 
-// Promise.all([api.getUserData(), api.getInitialCard()])
-// .then(([userData, cards]) => {
-//     userInfo.setUserInfo({ name: userData.name, profession: userData.about, userAvatar: userData.avatar });
-//     currentUser = userData;
-//     userId = userData._id;
-
-//     const cardSection = new Section({
-//         items: cards,
-//         renderer: (cardData) => {
-//             const card = new Card(
-//                 cardData, 
-//                 document.getElementById('card-template'), 
-//                 handleCardClick, 
-//                 (cardId) => api.likeCard(cardId), 
-//                 (cardId) => api.dislikeCard(cardId),
-//                 //handleDeleteCard,
-//                 userId,
-//                 deleteCardPopup
-//                 );
-//             const cardElement = card.renderCard();
-//             cardSection.addItem(cardElement);
-//         },
-//     }, '.elements');
-//     cardSection.renderItems();
-// })
-// .catch((err) => console.log(err));
-
-let cardSection = new Section({
-    items: [], 
-    renderer: (cardData) => {
+function createCard(item) {
         const card = new Card(
-            cardData, 
-            document.getElementById('card-template'), 
+            item, 
+            cardTemplate, 
             handleCardClick, 
             (cardId) => api.likeCard(cardId), 
             (cardId) => api.dislikeCard(cardId),
@@ -115,7 +49,14 @@ let cardSection = new Section({
             api
         );
         const cardElement = card.renderCard();
-        cardSection.addItem(cardElement);
+        return cardElement
+}
+
+let cardSection = new Section({
+    items: [], 
+    renderer: (cardData) => {
+        const card = createCard(cardData)
+        cardSection.addItem(card);
     }
 }, '.elements');
 
@@ -152,22 +93,9 @@ addAvatarFormValidator.enableValidation();
 const zoomImage = new PopupWithImage('.popup-zoom')
 zoomImage.setEventListeners();
 
-const createCard = (cardData) => {
-    return new Card(
-        cardData, 
-        cardTemplate, 
-        handleCardClick, 
-        (cardId) => api.likeCard(cardId), 
-        (cardId) => api.dislikeCard(cardId),
-        //handleDeleteCard,
-        userId,
-        deleteCardPopup,
-        
-    );
-};
-
 const editProfilePopup = new PopupWithForm('.popup-edit', (userData) => {
-    const submitBtn = document.querySelector('.popup-add__save-button');
+    const submitBtn = document.querySelector('.popup__save-button');
+    console.log(submitBtn);
     submitBtn.textContent = 'Обновляем данные';
     api.changeUserInfo(userData)
             .then(res => {
@@ -195,8 +123,7 @@ const addCardPopup = new PopupWithForm('.popup-add', (cardData) => {
     api.addCard(cardData)
         .then(cardData => {
             const newCard = createCard(cardData);
-            renderCardElement(newCard.renderCard(), cardData._id);
-            
+            renderCardElement(newCard, cardData._id);
         })
         .then(() => {
             addCardPopup.closePopup();

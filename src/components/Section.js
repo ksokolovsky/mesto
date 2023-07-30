@@ -14,6 +14,7 @@ export default class Section {
     }
 
     setItems(newItems) {
+        console.log(this._renderedItems)
         this._renderedItems = newItems; 
     }
 

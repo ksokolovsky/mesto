@@ -9,9 +9,10 @@ export class Card {
         //this._handleDeleteCard = handleDeleteCard;
         this._userId = userId;
         this._deleteCardPopup = deleteCardPopup;
+        this._api = api;
+
         this._deleteButton = document.querySelector('element__delete-button');
         this._deleteForm = document.querySelector('.popup-delete__content');
-        this._api = api;
         
     }
 
